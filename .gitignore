@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# SQLite databases (transient & local test runs)
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables & secret API keys
+.env
+.env.local
+
+# Testing cache & coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Operating system artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
