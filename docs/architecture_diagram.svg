@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="100%" style="background:#0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="invGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#4338ca" />
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <!-- Title & Subtitle -->
+  <text x="500" y="45" text-anchor="middle" fill="#f8fafc" font-size="22" font-weight="bold">Campus Lab Equipment Assistant — System Architecture</text>
+  <text x="500" y="70" text-anchor="middle" fill="#94a3b8" font-size="13">Multi-Agent Orchestration • Dual-Database Architecture • Durable Execution &amp; Crash Recovery</text>
+
+  <!-- Authenticated User -->
+  <g transform="translate(350, 95)">
+    <rect width="300" height="55" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="150" y="24" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold">RESEARCHER (STUDENT / FACULTY)</text>
+    <text x="150" y="42" text-anchor="middle" fill="#e2e8f0" font-size="12">Natural Language: "Is SEM available? Book slot 1 and notify me"</text>
+  </g>
+
+  <!-- Arrow User -> Supervisor -->
+  <line x1="500" y1="150" x2="500" y2="185" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="510" y="172" fill="#94a3b8" font-size="11">Authenticated Request</text>
+
+  <!-- Supervisor Agent -->
+  <g transform="translate(310, 190)">
+    <rect width="380" height="70" rx="10" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+    <rect x="270" y="8" width="100" height="18" rx="4" fill="#1d4ed8"/>
+    <text x="320" y="21" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold">ORCHESTRATOR</text>
+    <text x="15" y="28" fill="#93c5fd" font-size="15" font-weight="bold">Supervisor Agent</text>
+    <text x="15" y="48" fill="#cbd5e1" font-size="11">Decomposes compound intents into subgoals • Zero direct database access</text>
+    <text x="15" y="62" fill="#94a3b8" font-size="10">Delegates via ask_inventory and ask_booking_desk tool calls</text>
+  </g>
+
+  <!-- Supervisor -> Inventory -->
+  <path d="M 400 260 L 220 310" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arrow-green)"/>
+  <text x="270" y="280" fill="#34d399" font-size="11" font-weight="bold">ask_inventory</text>
+
+  <!-- Supervisor -> Booking Desk -->
+  <path d="M 600 260 L 780 310" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#arrow-amber)"/>
+  <text x="680" y="280" fill="#fbbf24" font-size="11" font-weight="bold">ask_booking_desk</text>
+
+  <!-- Specialist Agents Tier -->
+  <!-- Inventory Specialist -->
+  <g transform="translate(50, 315)">
+    <rect width="360" height="95" rx="8" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="2"/>
+    <rect x="250" y="8" width="95" height="18" rx="4" fill="#047857"/>
+    <text x="297" y="21" text-anchor="middle" fill="#a7f3d0" font-size="9" font-weight="bold">STRICTLY READ-ONLY</text>
+    <text x="15" y="26" fill="#34d399" font-size="14" font-weight="bold">Inventory Specialist</text>
+    <text x="15" y="46" fill="#e2e8f0" font-size="11">Tools: search_equipment(), get_available_slots()</text>
+    <text x="15" y="63" fill="#cbd5e1" font-size="10">• Queries instrument specs, labs, and time schedules</text>
+    <text x="15" y="78" fill="#94a3b8" font-size="10">• Cannot reserve, modify, or cancel bookings</text>
+  </g>
+
+  <!-- Booking Desk Specialist -->
+  <g transform="translate(590, 315)">
+    <rect width="360" height="95" rx="8" fill="#78350f" fill-opacity="0.4" stroke="#f59e0b" stroke-width="2"/>
+    <rect x="235" y="8" width="110" height="18" rx="4" fill="#b45309"/>
+    <text x="290" y="21" text-anchor="middle" fill="#fef3c7" font-size="9" font-weight="bold">DURABLE MUTATIONS</text>
+    <text x="15" y="26" fill="#fbbf24" font-size="14" font-weight="bold">Booking Desk Specialist</text>
+    <text x="15" y="46" fill="#e2e8f0" font-size="11">Tools: check_eligibility(), book_slot(), notify_researcher()</text>
+    <text x="15" y="63" fill="#cbd5e1" font-size="10">• Bound to verified caller roll_no session context</text>
+    <text x="15" y="78" fill="#94a3b8" font-size="10">• Enforces safety tier certification &amp; max quota rules</text>
+  </g>
+
+  <!-- Database Layer -->
+  <!-- Domain Database -->
+  <g transform="translate(50, 445)">
+    <rect width="360" height="110" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+    <rect x="250" y="8" width="95" height="18" rx="4" fill="#4338ca"/>
+    <text x="297" y="21" text-anchor="middle" fill="#e0e7ff" font-size="9" font-weight="bold">DOMAIN DATA</text>
+    <text x="15" y="28" fill="#a5b4fc" font-size="14" font-weight="bold">Domain DB (lab.db / Supabase)</text>
+    <text x="15" y="48" fill="#e2e8f0" font-size="11">Tables: equipment, slots, researchers, bookings, policy</text>
+    <text x="15" y="66" fill="#cbd5e1" font-size="10">• Data-driven policies (max_active_bookings=2, min_safety=1)</text>
+    <text x="15" y="82" fill="#cbd5e1" font-size="10">• Defense-in-depth: UNIQUE constraint prevents double-booking</text>
+    <text x="15" y="98" fill="#38bdf8" font-size="10">Cloud PostgreSQL: https://hcqpoiwbwukygaxmixix.supabase.co</text>
+  </g>
+
+  <!-- Agent Memory DB -->
+  <g transform="translate(590, 445)">
+    <rect width="360" height="110" rx="8" fill="#1e1b4b" stroke="#c084fc" stroke-width="2"/>
+    <rect x="240" y="8" width="105" height="18" rx="4" fill="#6b21a8"/>
+    <text x="292" y="21" text-anchor="middle" fill="#f3e8ff" font-size="9" font-weight="bold">DURABLE RUNTIME</text>
+    <text x="15" y="28" fill="#d8b4fe" font-size="14" font-weight="bold">Agent Memory DB (agent.db)</text>
+    <text x="15" y="48" fill="#e2e8f0" font-size="11">Tables: runs, steps, queue, leases, heartbeats</text>
+    <text x="15" y="66" fill="#cbd5e1" font-size="10">• Queue worker lease locking (TTL expiry &amp; dead worker reaper)</text>
+    <text x="15" y="82" fill="#cbd5e1" font-size="10">• SHA-256 Idempotency store commits atomically with side effects</text>
+    <text x="15" y="98" fill="#4ade80" font-size="10">Guarantees exactly-once execution across mid-step worker crashes</text>
+  </g>
+
+  <!-- Lines between Specialist and DBs -->
+  <line x1="230" y1="410" x2="230" y2="440" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="770" y1="410" x2="770" y2="440" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Cross-link Booking desk to domain db -->
+  <path d="M 600 400 L 415 470" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrow-amber)"/>
+
+  <!-- Bottom Badges: Reliability & Verification -->
+  <g transform="translate(50, 580)">
+    <rect width="280" height="60" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <text x="140" y="22" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="bold">ATOMIC WORKER LEASES</text>
+    <text x="140" y="40" text-anchor="middle" fill="#94a3b8" font-size="10">Lease TTL + Heartbeats + Auto-Reaper</text>
+    <text x="140" y="52" text-anchor="middle" fill="#64748b" font-size="9">Dead worker jobs re-claimed safely</text>
+  </g>
+
+  <g transform="translate(360, 580)">
+    <rect width="280" height="60" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <text x="140" y="22" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="bold">CRASH RECOVERY &amp; REPLAY</text>
+    <text x="140" y="40" text-anchor="middle" fill="#94a3b8" font-size="10">SHA-256 Idempotency keys (once())</text>
+    <text x="140" y="52" text-anchor="middle" fill="#64748b" font-size="9">Single-write guarantee verified by test</text>
+  </g>
+
+  <g transform="translate(670, 580)">
+    <rect width="280" height="60" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <text x="140" y="22" text-anchor="middle" fill="#f43f5e" font-size="11" font-weight="bold">CYBERPUNK WEB UI</text>
+    <text x="140" y="40" text-anchor="middle" fill="#94a3b8" font-size="10">Live Telemetry &amp; Multi-Agent Tracing</text>
+    <text x="140" y="52" text-anchor="middle" fill="#64748b" font-size="9">Runs locally at http://localhost:8080</text>
+  </g>
+
+  <!-- Footer Info -->
+  <text x="500" y="665" text-anchor="middle" fill="#64748b" font-size="11">GitHub: https://github.com/KSPARMESH/campus-lab-assistant • Supabase Project: hcqpoiwbwukygaxmixix</text>
+</svg>
